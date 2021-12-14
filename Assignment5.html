@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<div class="buttons">
+
+    <div class="action_btn">
+
+        <button name="submit" class="action_btn json" type="submit" value="JSON" onclick="myFunction2()">JSON</button>
+
+        <p id="saved"></p>
+
+    </div>
+
+</div>
+<script type="text/javascript">
+    function DownloadXML() {
+        $.ajax({
+            url: 'https://github.com/JayyStacks/Assignment5/blob/main/Assignment5.json',
+            type: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                var json = JSON.parse(data);
+                DisplayData(json);
+            },
+            error: function (jqXHR, textStatus, errorThrown) { alert(textStatus); }
+        });
+    }
+      function DisplayData(json) {
+        document.getElementById("item").innerHTML = json.city;
+        document.getElementById("price").innerHTML = json.temp;
+    }
+
+    function myFunction2() {
+        $(document).ready(function () {
+            alert("Document Loaded!");
+        });
+    }   
+</script>
+<body>
+        <div id="weatherResults"><div id="item"><div><div id="price"></div></div>
+        <button type="button" onclick="DownloadXML()">Get Weather Info</button>
+    </body>
+</html>
